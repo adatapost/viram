@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/db_credit?zeroDateTimeBehavior=convertToNull</property>
+    <property name="hibernate.connection.username">root</property>
+    <property name="hibernate.current_session_context_class">thread</property>
+    <mapping resource="in/credit/model/AccountType.hbm.xml"/>
+    <mapping resource="in/credit/model/Account.hbm.xml"/>
+    <mapping resource="in/credit/model/Loan.hbm.xml"/>
+    <mapping resource="in/credit/model/Nominee.hbm.xml"/>
+    <mapping resource="in/credit/model/AccMaster.hbm.xml"/>
+    <mapping resource="in/credit/model/Role.hbm.xml"/>
+    <mapping resource="in/credit/model/Journal.hbm.xml"/>
+    <mapping resource="in/credit/model/UserAccount.hbm.xml"/>
+    <mapping resource="in/credit/model/Recurring.hbm.xml"/>
+    <mapping resource="in/credit/model/Ledger.hbm.xml"/>
+    <mapping resource="in/credit/model/Deposit.hbm.xml"/>
+    <mapping resource="in/credit/model/City.hbm.xml"/>
+    <mapping resource="in/credit/model/State.hbm.xml"/>
+    <mapping resource="in/credit/model/LedgerType.hbm.xml"/>
+  </session-factory>
+</hibernate-configuration>

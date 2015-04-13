@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 13, 2015 1:34:58 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="in.credit.model.AccountType" table="account_type" catalog="db_credit" optimistic-lock="version">
+        <id name="typeId" type="java.lang.Integer">
+            <column name="type_id" />
+            <generator class="identity" />
+        </id>
+        <property name="typeName" type="string">
+            <column name="type_name" length="40" not-null="true" unique="true" />
+        </property>
+        <set name="accounts" table="account" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="type_id" />
+            </key>
+            <one-to-many class="in.credit.model.Account" />
+        </set>
+    </class>
+</hibernate-mapping>

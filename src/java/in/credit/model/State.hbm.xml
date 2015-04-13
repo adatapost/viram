@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 13, 2015 1:34:58 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="in.credit.model.State" table="state" catalog="db_credit" optimistic-lock="version">
+        <id name="stateId" type="java.lang.Integer">
+            <column name="state_id" />
+            <generator class="identity" />
+        </id>
+        <property name="stateName" type="string">
+            <column name="state_name" length="40" not-null="true" unique="true" />
+        </property>
+        <set name="cities" table="city" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="state_id" />
+            </key>
+            <one-to-many class="in.credit.model.City" />
+        </set>
+    </class>
+</hibernate-mapping>

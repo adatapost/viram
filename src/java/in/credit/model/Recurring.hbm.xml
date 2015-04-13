@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 13, 2015 1:34:58 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="in.credit.model.Recurring" table="recurring" catalog="db_credit" optimistic-lock="version">
+        <id name="ledgerId" type="int">
+            <column name="ledger_id" />
+            <generator class="foreign">
+                <param name="property">ledger</param>
+            </generator>
+        </id>
+        <one-to-one name="ledger" class="in.credit.model.Ledger" constrained="true"></one-to-one>
+        <property name="startDate" type="timestamp">
+            <column name="start_date" length="19" />
+        </property>
+        <property name="frequency" type="java.lang.Integer">
+            <column name="frequency" />
+        </property>
+        <property name="term" type="java.lang.Integer">
+            <column name="term" />
+        </property>
+        <property name="endDate" type="timestamp">
+            <column name="end_date" length="19" />
+        </property>
+        <property name="amount" type="big_decimal">
+            <column name="amount" precision="18" />
+        </property>
+        <property name="interestRate" type="big_decimal">
+            <column name="interest_rate" precision="18" />
+        </property>
+        <property name="created" type="timestamp">
+            <column name="created" length="19" />
+        </property>
+    </class>
+</hibernate-mapping>

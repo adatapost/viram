@@ -1,0 +1,128 @@
+body{
+    background: url('../images/bg1.JPG');
+   // bleed: 10px;
+    margin: 0px;
+    line-height: 1.75em;
+    
+}
+.container{
+    background: white;
+    border-left: 1px black dotted;
+    border-right: 1px black dotted;
+    border-bottom: 1px black dotted;
+    border-radius: 15px;
+    
+}
+
+.page-header {
+    border-radius: 8px;
+    background: #000;
+    color: white;
+    font-family: Georgia, serif;
+    margin-top: 0px;
+    margin: 0px;
+}
+.navbar{
+    margin: 0px;
+}
+.splash {
+    margin-left: 200px;
+    margin-right: 68px;
+    border: 1.5px #aaa solid;
+}
+.pic{
+    width: 100%;
+    height: 100%;
+}
+.menubar{
+    font-family: Georgia, serif;
+    background: #31b0d5;
+    border-radius: 4px;
+    box-shadow: 5px 5px 3px #ddd
+}
+.menubar li a:active{
+    
+}
+.selected{
+    border-bottom: 2px red solid;
+}
+h1,h2,h4,h6,h6,.h1,.h2,.h4,.h5,.h6{
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+nav ul li a{
+    margin: 0px;
+    color: white;
+}
+.sidebar{
+    font-family: Georgia, serif;
+    background: #31b0d5;
+    width: 150px;
+    border-right: 1px solid #aaa;
+    height: 400px;
+    border-radius: 4px;
+    box-shadow: 5px 5px 3px #ddd
+}
+.sidebar ul li{
+    color: white;
+    float: left;
+}
+.content {
+    font-family: Georgia, serif;
+    min-height: 300px;
+    margin-top: 0px;
+}
+footer{
+    font-family: Georgia, serif;
+    border-top: 1px solid #aaa;
+    margin: 0px;
+    clear: both;
+
+}
+.clear{clear: both;}
+.w400 { width: 400px; }
+.w300 { width: 300px; }
+.w200 { width: 200px; }
+.w100 { width: 100px; }
+.w-auto{width: auto;}
+.mrg-l-100{margin-left: 100px;}
+.mrg-l-200{margin-left: 200px;}
+.mrg-l-300{margin-left: 300px;}
+.mrg-l-400{margin-left: 400px;}
+.mrg-r-100{margin-right: 100px;}
+.mrg-r-200{margin-right: 200px;}
+.mrg-r-400{margin-right: 400px;}
+.float-left{float: left;}
+.float-right{float: right;}
+.form label {
+    display: inline-block;
+    width:150px;
+    text-align: right;
+}
+.center{
+    margin: 0px auto;
+}
+.bg-aaa{background: #aaa; }
+.bg-black{background: black;}
+.text-head{
+    text-shadow: 2px 2px 5px white;
+    margin: 0px;
+}
+header img{
+    padding: 0px;
+    width: 100px;
+    height: 100px;
+    margin: 0px;
+}
+footer img{
+    padding: 0px;
+    width: 50px;
+    height: 50px;
+    margin: 0px auto;
+}
+.img-small { width: 60px;}
+
+label.error {
+    color:red;
+    font-style: italic;
+}

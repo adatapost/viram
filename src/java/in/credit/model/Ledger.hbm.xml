@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 13, 2015 1:34:58 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="in.credit.model.Ledger" table="ledger" catalog="db_credit" optimistic-lock="version">
+        <id name="ledgerId" type="java.lang.Integer">
+            <column name="ledger_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="account" class="in.credit.model.Account" fetch="select">
+            <column name="account_id" />
+        </many-to-one>
+        <many-to-one name="ledgerType" class="in.credit.model.LedgerType" fetch="select">
+            <column name="ledger_type_id" />
+        </many-to-one>
+        <property name="ledgerName" type="string">
+            <column name="ledger_name" length="100" not-null="true" />
+        </property>
+        <property name="created" type="timestamp">
+            <column name="created" length="19" />
+        </property>
+        <property name="updated" type="timestamp">
+            <column name="updated" length="19" />
+        </property>
+        <property name="isClosed" type="java.lang.Boolean">
+            <column name="is_closed" />
+        </property>
+        <property name="isDeleted" type="java.lang.Boolean">
+            <column name="is_deleted" />
+        </property>
+        <property name="currentAcYear" type="java.lang.Integer">
+            <column name="current_ac_year" />
+        </property>
+        <set name="journalsForCrLedgerId" table="journal" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="cr_ledger_id" />
+            </key>
+            <one-to-many class="in.credit.model.Journal" />
+        </set>
+        <set name="journalsForDrLedgerId" table="journal" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="dr_ledger_id" />
+            </key>
+            <one-to-many class="in.credit.model.Journal" />
+        </set>
+        <one-to-one name="recurring" class="in.credit.model.Recurring"></one-to-one>
+        <one-to-one name="loan" class="in.credit.model.Loan"></one-to-one>
+        <one-to-one name="deposit" class="in.credit.model.Deposit"></one-to-one>
+    </class>
+</hibernate-mapping>
