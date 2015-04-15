@@ -20,8 +20,9 @@
             </header>
             <nav class="navbar clear">
                 <ul class="nav nav-tabs bg-info menubar">
-                    <li><a href="Home"  class="glyphicon glyphicon-home" title="Home"></a></li>
+                    <li><a href="/CreditSocApp/employee/"  class="glyphicon glyphicon-home" title="Home"></a></li>
                     <li><a href="account">Accounts</a></li>
+                    <li><a href="journal">Journals</a></li>
                     
 
 

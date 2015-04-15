@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 13, 2015 at 11:27 AM
+-- Generation Time: Apr 15, 2015 at 10:26 AM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -148,7 +148,7 @@ CREATE TABLE IF NOT EXISTS `deposit` (
 --
 
 INSERT INTO `deposit` (`ledger_id`, `start_date`, `maturity_date`, `amount`, `interest_rate`, `created`, `term`) VALUES
-(19, '2015-04-13 14:36:46', '2015-04-13 14:36:46', '0.00', '0.00', '2015-04-13 14:36:46', 0),
+(19, '2015-04-13 00:00:00', '2015-12-13 00:00:00', '5000.00', '9.00', '2015-04-13 14:36:46', 90),
 (23, '2015-04-13 14:55:20', '2015-04-13 14:55:20', '0.00', '0.00', '2015-04-13 14:55:20', 0);
 
 -- --------------------------------------------------------
@@ -168,7 +168,16 @@ CREATE TABLE IF NOT EXISTS `journal` (
   PRIMARY KEY (`doc_id`),
   KEY `cr_ledger_id` (`cr_ledger_id`),
   KEY `dr_ledger_id` (`dr_ledger_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `journal`
+--
+
+INSERT INTO `journal` (`doc_id`, `doc_date`, `cr_ledger_id`, `dr_ledger_id`, `amount`, `particular`, `is_deleted`) VALUES
+(1, '2015-04-13 13:17:48', 17, 24, '40000.00', 'Cash deposit', 0),
+(2, '2015-04-15 13:50:29', 24, 17, '5000.00', 'Self withdrawn', 0),
+(3, '2015-04-15 13:54:35', 17, 27, '10.00', 'Interest added', 0);
 
 -- --------------------------------------------------------
 
@@ -189,7 +198,7 @@ CREATE TABLE IF NOT EXISTS `ledger` (
   PRIMARY KEY (`ledger_id`),
   KEY `ledger_type_id` (`ledger_type_id`),
   KEY `account_id` (`account_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=24 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=28 ;
 
 --
 -- Dumping data for table `ledger`
@@ -198,10 +207,14 @@ CREATE TABLE IF NOT EXISTS `ledger` (
 INSERT INTO `ledger` (`ledger_id`, `ledger_type_id`, `ledger_name`, `account_id`, `created`, `updated`, `is_closed`, `is_deleted`, `current_ac_year`) VALUES
 (17, 2, 'Tarak S Maheta Current A/C', 27, '2015-04-13 11:39:25', NULL, 0, 0, 2015),
 (18, 2, 'Tamar Manira Solanki Savings A/C', 28, '2015-04-13 11:41:32', NULL, 0, 0, 2015),
-(19, 6, 'Tarak S Maheta Fixed Deposit A/C', 27, '2015-04-13 14:36:45', '2015-04-13 14:36:45', 0, 0, 2015),
-(21, 5, 'Tarak S Maheta Recurring Deposit A/C', 27, '2015-04-13 14:37:52', '2015-04-13 14:37:52', 0, 0, 2015),
-(22, 7, 'Tarak S Maheta Loan A/C', 27, '2015-04-13 14:40:03', '2015-04-13 14:40:03', 0, 0, 2015),
-(23, 6, 'Tamar Manira Solanki Fixed Deposit A/C', 28, '2015-04-13 14:55:19', '2015-04-13 14:55:19', 0, 0, 2015);
+(19, 6, 'Tarak S Maheta Fixed Deposit A/C', 27, '2015-04-13 14:36:45', '2015-04-15 11:21:21', 0, 0, 2015),
+(21, 5, 'Tarak S Maheta Recurring Deposit A/C', 27, '2015-04-13 14:37:52', '2015-04-15 10:03:38', 0, 0, 2015),
+(22, 7, 'Tarak S Maheta Loan A/C', 27, '2015-04-13 14:40:03', '2015-04-15 11:34:07', 0, 0, 2015),
+(23, 6, 'Tamar Manira Solanki Fixed Deposit A/C', 28, '2015-04-13 14:55:19', '2015-04-13 14:55:19', 0, 0, 2015),
+(24, 1, 'Cash In Hand A/C', 1, '2015-04-15 08:44:48', '2015-04-15 08:44:48', 0, 0, 2015),
+(25, 1, 'Bank A/C', 1, '2015-04-15 08:45:13', '2015-04-15 08:45:13', 0, 0, 2015),
+(26, 3, 'Interest Income A/C', 1, '2015-04-15 08:45:37', '2015-04-15 08:45:37', 0, 0, 2015),
+(27, 4, 'Interest Expense A/C', 1, '2015-04-15 08:45:48', '2015-04-15 08:45:48', 0, 0, 2015);
 
 -- --------------------------------------------------------
 
@@ -252,7 +265,7 @@ CREATE TABLE IF NOT EXISTS `loan` (
 --
 
 INSERT INTO `loan` (`ledger_id`, `start_date`, `end_date`, `amount`, `interest_rate`, `installment`, `created`) VALUES
-(22, '2015-04-13 14:40:03', '2015-04-13 14:40:03', '0.00', '0.00', 0, '2015-04-13 14:40:03');
+(22, '2015-04-13 00:00:00', '2016-04-13 00:00:00', '12000.00', '10.00', 1000, '2015-04-13 14:40:03');
 
 -- --------------------------------------------------------
 
@@ -305,7 +318,7 @@ CREATE TABLE IF NOT EXISTS `recurring` (
 --
 
 INSERT INTO `recurring` (`ledger_id`, `start_date`, `frequency`, `term`, `end_date`, `amount`, `interest_rate`, `created`) VALUES
-(21, '2015-04-13 14:37:52', 0, 0, '2015-04-13 14:37:52', '0.00', '0.00', '2015-04-13 14:37:52');
+(21, '2015-04-01 00:00:00', 0, 360, NULL, '100.00', '5.00', '2015-04-13 14:37:52');
 
 -- --------------------------------------------------------
 
@@ -380,7 +393,7 @@ CREATE TABLE IF NOT EXISTS `user_account` (
 
 INSERT INTO `user_account` (`user_id`, `user_email`, `user_pass`, `role_id`, `created`, `updated`, `is_deleted`, `is_activate`, `last_login`) VALUES
 (1, 'admin@gmail.com', '0DPiKuNIrrVmD8IUCuw1hQxNqZc=', 1, '2015-02-23 00:00:00', NULL, 0, 1, '2015-04-13 14:38:30'),
-(10, 'ramesh@ccs.com', 'o+RQMz2XL2P/i8ezLW8850IUqI4=', 2, '2015-04-10 14:13:02', NULL, 0, 0, '2015-04-13 14:56:32'),
+(10, 'ramesh@ccs.com', 'o+RQMz2XL2P/i8ezLW8850IUqI4=', 2, '2015-04-10 14:13:02', NULL, 0, 0, '2015-04-15 13:43:12'),
 (27, 'tarak@custmer.com', 'WPM9oM95ClAC7xJuuU4xe/qcZsY=', 3, '2015-04-13 11:39:21', NULL, 0, 1, NULL),
 (28, 'tamar@custmer.com', 'TpmwcvuSTVXCNc2dtoOEZSPpP3Y=', 3, '2015-04-13 11:41:28', NULL, 0, 1, NULL);
 
