@@ -107,11 +107,12 @@ public class LoanBao {
         return list;
     }
 
-    public static LoanViewModel get(Loan loan) {
+    public static LoanViewModel get(LoanViewModel model) {
         Session session = HbUtil.openSession();
         session.beginTransaction();
         LoanViewModel b=new LoanViewModel();
-        List<Loan> list = session.createCriteria(Loan.class).add(Restrictions.eq("ledgerId", loan.getLedgerId())).list();
+        List<Loan> list = session.createCriteria(Loan.class)
+                .add(Restrictions.eq("ledgerId", model.getLedgerId())).list();
         try {
             if (!list.isEmpty()) {
                 Loan a = list.get(0);

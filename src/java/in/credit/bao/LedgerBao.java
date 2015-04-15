@@ -60,7 +60,8 @@ public class LedgerBao {
         try {
             if (!list.isEmpty()) {
                 Ledger upd = list.get(0);
-                upd.getAccount().setAccountId(model.getAccountId());
+                if(model.getAccountId()!=0)
+                  upd.getAccount().setAccountId(model.getAccountId());
                 upd.setCurrentAcYear(model.getCurrentAcYear());
                 upd.setLedgerName(model.getLedgerName());
                 upd.setIsClosed(model.isIsClosed());
@@ -68,6 +69,7 @@ public class LedgerBao {
                 upd.setUpdated(U.now());
                 session.update(upd);
                 session.getTransaction().commit();
+                System.out.println("Ledger updated");
                 return true;
             }
         } catch (Exception e) {
@@ -128,11 +130,13 @@ public class LedgerBao {
         try {
             List<Ledger> result = session.createCriteria(Ledger.class).list();
             for (Ledger a : result) {
-                list.add(new LedgerViewModel(a.getLedgerId(),
+                LedgerViewModel b=new LedgerViewModel(a.getLedgerId(),
                         a.getLedgerType().getLedgerTypeId(),
                         a.getLedgerName(), a.getAccount().getAccountId(),
                         a.getCreated(), a.getUpdated(), a.getIsClosed(), a.getIsDeleted(),
-                        a.getCurrentAcYear(),a.getLedgerType().getLedgerTypeName()));
+                        a.getCurrentAcYear(),a.getLedgerType().getLedgerTypeName());
+                
+                list.add(b);
             }
         } finally {
             session.close();

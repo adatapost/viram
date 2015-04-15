@@ -19,8 +19,8 @@
             </header>
             <nav class="navbar clear">
                 <ul class="nav nav-tabs bg-info menubar ">
-                    <li><a href="index.jsp" class="glyphicon glyphicon-home" title="Home"></a></li>
-                    <li><a href="login.jsp"  title="Login">Login</a></li>
+                    <li><a href="home" class="glyphicon glyphicon-home" title="Home"></a></li>
+                    <li><a href="login"  title="Login">Login</a></li>
                     <li><a href="about_us.jsp" title="About Us">About Us</a></li>
 
 

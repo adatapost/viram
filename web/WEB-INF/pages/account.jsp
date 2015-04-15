@@ -100,9 +100,9 @@
                                                 <td>${a.isDeleted ? "Yes" : "No"}</td>
                                                 <td>
                                                     <c:if test="${a.ledgerTypeId ne 2}">
-                                                    <form method='post' action='${a.ledgerTypeId eq 6 ? 'deposit' : a.ledgerTypeId eq 5 ? 'recurring' : 'loan'}'>
+                                                    <form method='get' action='${a.ledgerTypeId eq 6 ? 'deposit' : a.ledgerTypeId eq 5 ? 'recurring' : 'loan'}'>
                                                            <input type="hidden" name="userId" value="${model.userId}"/>
-                                                           <input type="hidden" name="ledgerId" value="${ledger.ledgerId}"/>
+                                                           <input type="hidden" name="ledgerId" value="${a.ledgerId}"/>
                                                            <button name="cmd" value='Edit' class='btn btn-default'>Edit</button>
                                                     </form>
                                                     </c:if>

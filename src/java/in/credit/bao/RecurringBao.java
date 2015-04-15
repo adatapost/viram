@@ -52,11 +52,11 @@ public class RecurringBao {
                 
                 upd.setStartDate(model.getStartDate());
                 upd.setFrequency(model.getFrequency());
-                upd.setTerm(model.getFrequency());
                 upd.setEndDate(model.getEndDate());
                 upd.setAmount(BigDecimal.valueOf(model.getAmount()));
                 upd.setInterestRate(BigDecimal.valueOf(model.getInterestRate()));
                 upd.setCreated(model.getCreated());
+                upd.setTerm(model.getTerm());
                 session.update(upd);
                 session.getTransaction().commit();
                 return true;
@@ -117,6 +117,7 @@ public class RecurringBao {
             if (!list.isEmpty()) {
                 Recurring a = list.get(0);
                 r=new  RecurringViewModel(a.getLedger().getLedgerId(), a.getLedger().getLedgerName(), a.getLedger().getAccount().getAccountId(), a.getStartDate(),a.getFrequency(),a.getTerm(), a.getEndDate(),a.getAmount().doubleValue(), a.getInterestRate().doubleValue(),a.getCreated());
+                r.setLedger(LedgerBao.get(new LedgerViewModel(model.getLedgerId())));
             }
         } catch (Exception e) {
             System.out.println("RecurringBao::get " + e);

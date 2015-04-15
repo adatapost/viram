@@ -62,7 +62,7 @@ public class AccountServlet extends HttpServlet {
         /* Actions  */
         if ("AddLedger".equals(cmd)) {
             if (LedgerBao.add(ledger)) {
-                if(ledger.getLedgerTypeId()==6){
+                if (ledger.getLedgerTypeId() == 6) {
                     DepositViewModel dm = new DepositViewModel();
                     dm.setAmount(0);
                     dm.setCreated(U.now());
@@ -73,7 +73,7 @@ public class AccountServlet extends HttpServlet {
                     dm.setTerm(0);
                     DepositBao.add(dm);
                 }
-                if(ledger.getLedgerTypeId()==5){
+                if (ledger.getLedgerTypeId() == 5) {
                     RecurringViewModel dm = new RecurringViewModel();
                     dm.setAmount(0);
                     dm.setCreated(U.now());
@@ -85,7 +85,7 @@ public class AccountServlet extends HttpServlet {
                     dm.setTerm(0);
                     RecurringBao.add(dm);
                 }
-                if(ledger.getLedgerTypeId()==7){
+                if (ledger.getLedgerTypeId() == 7) {
                     LoanViewModel dm = new LoanViewModel();
                     dm.setLedgerId(ledger.getLedgerId());
                     dm.setAmount(0.0);
@@ -101,39 +101,30 @@ public class AccountServlet extends HttpServlet {
             }
         }
 
-    
-
-    if(model.getUserId () 
-        !=0 ){
+        if (model.getUserId()
+                != 0) {
             model = AccountBao.get(model);
-    }
+        }
 
-    if(type.getLedgerTypeId () 
-        !=0) {
+        if (type.getLedgerTypeId()
+                != 0) {
             ledger.setLedgerName(model.getFirstName() + " " + model.getMiddleName() + " " + model.getLastName() + " " + type.getLedgerTypeName() + " A/C");
-    }
+        }
 
-    request.setAttribute (
-
-    "model", model);
-    request.setAttribute (
-
-    "accounts", AccountBao.gets());
-    request.setAttribute (
-
-    "ledger",ledger);
-    request.setAttribute (
-
-    "ledgers", LedgerBao.getLedgersByAccountId(model.getUserId()));
-    request.setAttribute (
-
-    "ledgerTypes",LedgerTypeBao.gets());
-    request.setAttribute (
-
-    "message", message);
-    request.getRequestDispatcher (fileName)
-
-.forward(request, response);
+        request.setAttribute(
+                "model", model);
+        request.setAttribute(
+                "accounts", AccountBao.gets());
+        request.setAttribute(
+                "ledger", ledger);
+        request.setAttribute(
+                "ledgers", LedgerBao.getLedgersByAccountId(model.getUserId()));
+        request.setAttribute(
+                "ledgerTypes", LedgerTypeBao.gets());
+        request.setAttribute(
+                "message", message);
+        request.getRequestDispatcher(fileName)
+                .forward(request, response);
     }
 
 }

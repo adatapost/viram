@@ -3,11 +3,14 @@ package in.credit.servlets;
 import in.credit.U;
 import in.credit.bao.AccountBao;
 import in.credit.bao.AccountViewModel;
+import in.credit.bao.DepositBao;
+import in.credit.bao.DepositViewModel;
 import in.credit.bao.LedgerBao;
 import in.credit.bao.LedgerViewModel;
-import in.credit.bao.LoanBao;
-import in.credit.bao.LoanViewModel;
+import in.credit.bao.RecurringBao;
+import in.credit.bao.RecurringViewModel;
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,8 +21,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Team
  */
-@WebServlet(name = "LoanServlet", urlPatterns = {"/admin/loan", "/employee/loan"})
-public class LoanServlet extends HttpServlet {
+@WebServlet(name = "DepositServlet", urlPatterns = {"/admin/deposit", "/employee/deposit"})
+public class DepositServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -28,12 +31,12 @@ public class LoanServlet extends HttpServlet {
         ledger.setLedgerId(U.paramInt(request, "ledgerId"));
         ledger = LedgerBao.get(ledger);
         AccountViewModel account = AccountBao.get(new AccountViewModel(ledger.getAccountId()));
-        LoanViewModel loan = LoanBao.get(new LoanViewModel(ledger.getLedgerId()));
-        loan.setLedger(ledger);
+        DepositViewModel fixed = DepositBao.get(new DepositViewModel(ledger.getLedgerId()));
+        fixed.setLedger(ledger);
 
-        request.setAttribute("ledger", loan);
+        request.setAttribute("ledger", fixed);
         request.setAttribute("model", account);
-        request.getRequestDispatcher("/WEB-INF/pages/loan.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/pages/deposit.jsp").forward(request, response);
     }
 
     @Override
@@ -45,24 +48,24 @@ public class LoanServlet extends HttpServlet {
         ledger.setLedgerId(U.paramInt(request, "ledgerId"));
         ledger = LedgerBao.get(ledger);
         AccountViewModel account = AccountBao.get(new AccountViewModel(ledger.getAccountId()));
-        LoanViewModel loan = LoanBao.get(new LoanViewModel(ledger.getLedgerId()));
-        loan.setLedger(ledger);
-
+        DepositViewModel fixed = DepositBao.get(new DepositViewModel(ledger.getLedgerId()));
+        fixed.setLedger(ledger);
+        
         ledger.setLedgerName(U.param(request, "ledgerName"));
         ledger.setIsClosed(U.paramBool(request, "isClosed"));
         ledger.setIsDeleted(U.paramBool(request, "isDeleted"));
-
-        loan.setAmount(U.paramDbl(request, "amount"));
-        loan.setEndDate(U.paramDate(request, "endDate"));
-        loan.setInterestRate(U.paramDbl(request, "interestRate"));
-        loan.setStartDate(U.paramDate(request, "startDate"));
-        loan.setInstallment(U.paramInt(request, "installment"));
-
-        if ("Update".equals(cmd)) {
-            message = LedgerBao.update(ledger) && LoanBao.update(loan) ? "Ledger updated successfully" : "Cannot update ledger.";
+        
+        fixed.setAmount(U.paramDbl(request, "amount"));
+        fixed.setMaturityDate(U.paramDate(request, "maturityDate"));
+        fixed.setInterestRate(U.paramDbl(request, "interestRate"));
+        fixed.setStartDate(U.paramDate(request, "startDate"));
+        fixed.setTerm(U.paramInt(request, "term"));
+        
+        if("Update".equals(cmd)) {
+            message = LedgerBao.update(ledger) && DepositBao.update(fixed) ? "Ledger updated successfully" : "Cannot update ledger.";
         }
-        if ("Delete".equals(cmd)) {
-            if (LoanBao.delete(loan) && LedgerBao.delete(ledger)) {
+        if("Delete".equals(cmd)) {
+            if(DepositBao.delete(fixed) && LedgerBao.delete(ledger)) {
                 request.getRequestDispatcher("/WEB-INF/pages/account.jsp").forward(request, response);
                 return;
             } else {
@@ -70,10 +73,9 @@ public class LoanServlet extends HttpServlet {
             }
         }
 
-        request.setAttribute("ledger", loan);
+        request.setAttribute("ledger", fixed);
         request.setAttribute("model", account);
-        request.setAttribute("message", message);
-        request.getRequestDispatcher("/WEB-INF/pages/loan.jsp").forward(request, response);
+        request.setAttribute("message",message);
+        request.getRequestDispatcher("/WEB-INF/pages/deposit.jsp").forward(request, response);
     }
-
 }

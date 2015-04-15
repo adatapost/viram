@@ -1,6 +1,6 @@
 package in.credit.bao;
 
-import java.math.BigDecimal;
+
 import java.util.Date;
 
 /**
@@ -8,7 +8,7 @@ import java.util.Date;
  * @author Viram
  */
 public class LoanViewModel {
-    
+
     private int ledgerId;
     private String ledgerName;
     private Date startDate;
@@ -16,6 +16,17 @@ public class LoanViewModel {
     private double amount;
     private double interestRate;
     private int installment;
+     private LedgerViewModel ledger;
+
+    public LedgerViewModel getLedger() {
+        return ledger;
+    }
+
+    public void setLedger(LedgerViewModel ledger) {
+        this.ledger = ledger;
+    }
+
+    
 
     public LoanViewModel() {
     }
@@ -112,6 +123,4 @@ public class LoanViewModel {
         return true;
     }
 
-     
-   
 }

@@ -1,5 +1,6 @@
 package in.credit.bao;
 
+import in.credit.model.Ledger;
 import java.util.Date;
 
 /**
@@ -8,7 +9,6 @@ import java.util.Date;
  */
 public class RecurringViewModel {
 
-    
     private int ledgerId;
     private String ledgerName;
     private int userId;
@@ -19,6 +19,18 @@ public class RecurringViewModel {
     private double amount;
     private double interestRate;
     private Date created;
+
+    private LedgerViewModel ledger;
+
+    public LedgerViewModel getLedger() {
+        return ledger;
+    }
+
+    public void setLedger(LedgerViewModel ledger) {
+        this.ledger = ledger;
+    }
+
+    
 
     public RecurringViewModel() {
     }
@@ -142,5 +154,9 @@ public class RecurringViewModel {
         return true;
     }
 
-   
+    @Override
+    public String toString() {
+        return "RecurringViewModel{" + "ledgerId=" + ledgerId + ", ledgerName=" + ledgerName + ", userId=" + userId + ", startDate=" + startDate + ", frequency=" + frequency + ", term=" + term + ", endDate=" + endDate + ", amount=" + amount + ", interestRate=" + interestRate + ", created=" + created + ", ledger=" + ledger + '}';
+    }
+
 }

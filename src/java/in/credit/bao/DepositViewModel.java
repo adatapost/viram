@@ -20,6 +20,18 @@ public class DepositViewModel {
     private double interestRate;
     private Date created;
     private int term;
+    private LedgerViewModel ledger;
+
+    public LedgerViewModel getLedger() {
+        return ledger;
+    }
+
+    public void setLedger(LedgerViewModel ledger) {
+        this.ledger = ledger;
+    }
+
+    
+    
 
     public DepositViewModel() {
     }

@@ -53,8 +53,6 @@ public class DepositBao {
             if (!list.isEmpty()) {
                 Deposit upd = list.get(0);
                 upd.setAmount(BigDecimal.valueOf(model.getAmount()));
-                upd.setCreated(model.getCreated());
-                
                 upd.setInterestRate(BigDecimal.valueOf(model.getInterestRate()));
                 
                 upd.setMaturityDate(model.getMaturityDate());
