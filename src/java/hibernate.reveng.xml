@@ -2,18 +2,19 @@
 <!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
 <hibernate-reverse-engineering>
   <schema-selection match-catalog="db_credit"/>
-  <table-filter match-name="nominee"/>
-  <table-filter match-name="user_account"/>
   <table-filter match-name="account"/>
-  <table-filter match-name="role"/>
-  <table-filter match-name="state"/>
-  <table-filter match-name="account_type"/>
-  <table-filter match-name="loan"/>
-  <table-filter match-name="acc_master"/>
-  <table-filter match-name="journal"/>
-  <table-filter match-name="deposit"/>
-  <table-filter match-name="ledger_type"/>
   <table-filter match-name="city"/>
+  <table-filter match-name="loan"/>
+  <table-filter match-name="deposit"/>
   <table-filter match-name="ledger"/>
+  <table-filter match-name="account_type"/>
+  <table-filter match-name="role"/>
+  <table-filter match-name="journal"/>
+  <table-filter match-name="state"/>
+  <table-filter match-name="loan_installment"/>
+  <table-filter match-name="nominee"/>
   <table-filter match-name="recurring"/>
+  <table-filter match-name="ledger_type"/>
+  <table-filter match-name="acc_master"/>
+  <table-filter match-name="user_account"/>
 </hibernate-reverse-engineering>

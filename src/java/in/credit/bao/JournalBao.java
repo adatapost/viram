@@ -116,6 +116,7 @@ public class JournalBao {
                 Journal a = list.get(0);
                 j = new JournalViewModel(a.getDocId(), a.getLedgerByCrLedgerId().getLedgerId(), a.getLedgerByCrLedgerId().getLedgerName(), a.getLedgerByDrLedgerId().getLedgerId(), a.getLedgerByDrLedgerId().getLedgerName(), a.getDocDate(), a.getAmount().doubleValue(), a.getParticular(), a.getIsDeleted());
             }
+            session.getTransaction().commit();
         } catch (Exception e) {
             System.out.println("DepositBao::get " + e);
         } finally {
@@ -134,6 +135,7 @@ public class JournalBao {
             JournalViewModel j = new JournalViewModel(a.getDocId(), a.getLedgerByCrLedgerId().getLedgerId(), a.getLedgerByCrLedgerId().getLedgerName(), a.getLedgerByDrLedgerId().getLedgerId(), a.getLedgerByDrLedgerId().getLedgerName(), a.getDocDate(), a.getAmount().doubleValue(), a.getParticular(), a.getIsDeleted());
             list.add(j);
         }
+        session.getTransaction().commit();
         session.close();
         return list;
     }
@@ -148,6 +150,7 @@ public class JournalBao {
             JournalViewModel j = new JournalViewModel(a.getDocId(), a.getLedgerByCrLedgerId().getLedgerId(), a.getLedgerByCrLedgerId().getLedgerName(), a.getLedgerByDrLedgerId().getLedgerId(), a.getLedgerByDrLedgerId().getLedgerName(), a.getDocDate(), a.getAmount().doubleValue(), a.getParticular(), a.getIsDeleted());
             list.add(j);
         }
+        session.getTransaction().commit();
         session.close();
         return list;
     }
@@ -165,6 +168,7 @@ public class JournalBao {
             JournalViewModel j = new JournalViewModel(a.getDocId(), a.getLedgerByCrLedgerId().getLedgerId(), a.getLedgerByCrLedgerId().getLedgerName(), a.getLedgerByDrLedgerId().getLedgerId(), a.getLedgerByDrLedgerId().getLedgerName(), a.getDocDate(), a.getAmount().doubleValue(), a.getParticular(), a.getIsDeleted());
             list.add(j);
         }
+        session.getTransaction().commit();
         session.close();
         return list;
     }

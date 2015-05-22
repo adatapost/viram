@@ -1,6 +1,7 @@
-<%@page buffer="10024kb" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<jsp:useBean id="now" class="java.util.Date"/>
 <c:set var="title" value="Journals"/>
 <jsp:include page="/${role}/templates/header.jsp">
     <jsp:param name="title" value="${title}"/>
@@ -31,6 +32,9 @@
                                list="list" 
                                name="userId" value="${model.userId}"/>
                         <button class="btn btn-default">Submit</button>
+                        <c:if test="${model.userId ne 0}">
+                            <a target="_blank" href="../show-report?cmd=ledgers&accountId=${model.userId}" class="btn btn-default">Print</a>
+                        </c:if>
                     </form>
                     <c:if test="${model.userId ne 0}">
                         <table class="table table-bordered">
@@ -77,6 +81,27 @@
                                                             <input type="hidden" name="ledgerId" value="${a.ledgerId}"/>
                                                             <table class="table table-bordered">
                                                                 <tr>
+                                                                    <td colspan="2">
+                                                                        <input type="date" name="docDate" class="form-control"  required  value="<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" />"/>
+                                                                    </td>
+                                                                    <td colspan="3">
+                                                                        <div style="overflow: auto; height:50px">
+                                                                            <c:if test="${not empty loan}">
+                                                                                Amount : ${loan.amount} Install: ${loan.installment}<br/>
+                                                                                <c:forEach var="inst" items="${loan.installments}" varStatus="loop">
+                                                                                    ${loop.index+1}. ${inst.instDate} -  ${inst.paidDate} <br/>
+                                                                                </c:forEach>
+                                                                            </c:if>
+                                                                            <c:if test="${not empty recur}">
+                                                                                <p>Frequency : ${recur.frequency eq 0 ? 'Daily' : recur.frequency eq 1 ? 'Weekly' : 'Monthly'} Amount: ${recur.amount} Terms : ${recur.term}</p>
+
+                                                                            </c:if>
+                                                                        </div>
+
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+
                                                                     <td>
                                                                         <select name="jourType" required class="form-control">
                                                                             <option value="Cr">Cr</option>
@@ -137,12 +162,19 @@
                                                                     </td>
                                                                 </tr>
                                                             </c:forEach>
-                                                                <tr>
-                                                                    <td colspan="2">Total</td>
-                                                                    <td class="text-right"><fmt:formatNumber value="${total}" type="number" minFractionDigits="2"/></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                </tr>
+                                                            <tr>
+                                                                <td colspan="2">Total</td>
+                                                                <td class="text-right">
+                                                                    <c:if test="${total le 0}">
+                                                                      Dr.   <fmt:formatNumber value="${total*-1}" type="number" minFractionDigits="2"/>
+                                                                    </c:if>
+                                                                    <c:if test="${total gt 0}">
+                                                                      Cr.   <fmt:formatNumber value="${total}" type="number" minFractionDigits="2"/>
+                                                                    </c:if>
+                                                                </td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
                                                         </table>
                                                     </td>
                                                 </tr>

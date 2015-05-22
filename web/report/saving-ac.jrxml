@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.0.4.final using JasperReports Library version 6.0.4  -->
+<!-- 2015-05-04T11:26:33 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="current-ac" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7996ac61-c8ce-43c7-b4b2-d4360fa38e79">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="db_credit"/>
+	<parameter name="REPORT_IMAGE" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Javaprg\\Viram\\Code\\CreditSocApp\\web\\images\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CUSTOMER_IMAGE" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Javaprg\\Viram\\Code\\CreditSocApp\\web\\images\\Customers\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString language="SQL">
+		<![CDATA[select * from view_account where  type_name='Savings']]>
+	</queryString>
+	<field name="account_id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="first_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="middle_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="last_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="gender" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="address" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="city_id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="phone" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="birth_date" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="reference_id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="type_id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="is_deleted" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="created" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="updated" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="created_by" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cust_img" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="full_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="city_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="state_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="type_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ref_full_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<group name="first_name">
+		<groupExpression><![CDATA[$F{first_name}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="80" splitType="Stretch">
+			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
+			<rectangle>
+				<reportElement x="-20" y="-20" width="595" height="90" backcolor="#3C8ED6" uuid="7ff84d02-b74a-4887-a037-e1c4c101a476"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="129" y="-10" width="294" height="38" forecolor="#FCEEED" uuid="73f2defb-67f3-4520-84d7-0aec5597ee6e"/>
+				<textElement textAlignment="Left">
+					<font size="22" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CAMPA CREDIT SOCIETY]]></text>
+			</staticText>
+			<image>
+				<reportElement x="70" y="-10" width="50" height="38" uuid="abe44c61-9a55-45f8-bcbd-5da221267d6f"/>
+				<imageExpression><![CDATA[$P{REPORT_IMAGE} + "favicon.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement mode="Transparent" x="170" y="33" width="220" height="30" forecolor="#FCFAFA" uuid="36bffaed-69f6-43a7-b503-f38410328af3"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[SAVINGS ACCOUNTS]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="28" splitType="Stretch">
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="-13" y="0" width="323" height="20" uuid="3a5fa563-010e-4f6f-84d4-1b951c010a47"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[NAME & ADDRESS]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="98" splitType="Stretch">
+			<textField>
+				<reportElement x="40" y="10" width="240" height="20" uuid="98843b3a-84f1-4260-9227-c1579add14f3"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{full_name}]]></textFieldExpression>
+			</textField>
+			<image scaleImage="FillFrame">
+				<reportElement x="-13" y="5" width="50" height="50" uuid="5a785d78-2791-43aa-a713-bc94668768e5"/>
+				<imageExpression><![CDATA[$P{CUSTOMER_IMAGE} + $F{account_id}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="290" y="10" width="283" height="40" uuid="e9c10105-3231-494c-b5cc-e5dabb8f8caa"/>
+				<textFieldExpression><![CDATA[$F{address}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="40" y="55" width="41" height="19" uuid="02883ab7-fdf6-4bc0-b2c7-1d0002f506b2"/>
+				<textFieldExpression><![CDATA[$F{gender}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="290" y="50" width="180" height="20" uuid="e4dc6b7a-3125-448a-8e20-eedda2a22dd5"/>
+				<textFieldExpression><![CDATA[$F{city_name} + " " + $F{state_name}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="-30" y="4" width="603" height="1" uuid="eafedd2b-2ad6-463c-83a5-75225afa0075"/>
+			</line>
+			<textField>
+				<reportElement x="60" y="30" width="100" height="20" uuid="1a1322bc-d19f-4fc3-9f42-d4296cceaa21"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$F{phone}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="40" y="30" width="20" height="23" uuid="6412048b-ce77-4ba2-ac67-2a6df0154776"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[PH:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="320" y="70" width="253" height="20" uuid="b8003ffe-7c1b-4991-aa40-036e4dd66d51"/>
+				<textFieldExpression><![CDATA[$F{ref_full_name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="289" y="71" width="21" height="13" uuid="f28f24d5-52b2-424e-a325-a8d95e876dc2"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[REF:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="280" y="2" width="1" height="94" uuid="34707f34-3dc4-41c3-a0ac-d7b79402c580"/>
+			</line>
+			<textField>
+				<reportElement x="37" y="79" width="100" height="17" uuid="3b85ef6c-c52c-4245-bc81-5a3cdbf758ca"/>
+				<textFieldExpression><![CDATA[$F{account_id}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="-11" y="80" width="51" height="16" uuid="ad6150eb-eb68-402f-85ca-9f6b68cc35ba"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ACC NO:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="-20" y="97" width="593" height="1" uuid="416078d8-6640-4ffe-8622-9d6ac63225c5"/>
+			</line>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -1,7 +1,10 @@
 package in.credit.bao;
 
 
+import in.credit.model.LoanInstallment;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -16,7 +19,10 @@ public class LoanViewModel {
     private double amount;
     private double interestRate;
     private int installment;
-     private LedgerViewModel ledger;
+    private LedgerViewModel ledger;
+    private List<LoanInstallmentViewModel> installments =new ArrayList<>(); 
+    
+    public List<LoanInstallmentViewModel> getInstallments() { return installments;}
 
     public LedgerViewModel getLedger() {
         return ledger;

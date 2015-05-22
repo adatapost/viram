@@ -1,5 +1,5 @@
 package in.credit.model;
-// Generated Apr 13, 2015 1:34:56 PM by Hibernate Tools 4.3.1
+// Generated Apr 24, 2015 9:08:10 AM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;

@@ -7,6 +7,11 @@ import in.credit.bao.JournalBao;
 import in.credit.bao.JournalViewModel;
 import in.credit.bao.LedgerBao;
 import in.credit.bao.LedgerViewModel;
+import in.credit.bao.LoanBao;
+import in.credit.bao.LoanInstallmentViewModel;
+import in.credit.bao.LoanViewModel;
+import in.credit.bao.RecurringBao;
+import in.credit.bao.RecurringViewModel;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -45,6 +50,7 @@ public class JournalServlet extends HttpServlet {
         
         JournalViewModel journal = new JournalViewModel();
         journal.setDocId(U.paramInt(request, "docId"));
+        journal.setDocDate(U.paramDate(request, "docDate"));
         String jourType = U.param(request, "jourType");
         int jourTypeId = U.paramInt(request, "jourTypeId");
 
@@ -57,7 +63,6 @@ public class JournalServlet extends HttpServlet {
         }
         
         journal.setAmount(U.paramDbl(request, "amount"));
-        journal.setDocDate(U.now());
         journal.setIsDeleted(false);
         journal.setParticular(U.param(request, "particular"));
 
@@ -81,6 +86,25 @@ public class JournalServlet extends HttpServlet {
         }
         if (ledger.getLedgerId() != 0) {
             ledger = LedgerBao.get(ledger);
+            
+            /*---- Loan Installment -----*/
+            if(ledger.getLedgerTypeName().toLowerCase().contains("loan")){
+                if(journal.getAmount()>0) {
+                    LoanInstallmentViewModel lvm=new LoanInstallmentViewModel();
+                    lvm.setLedgerId(ledger.getLedgerId());
+                    lvm.setPaidDate(journal.getDocDate());
+                    lvm.setInstAmount( (long) journal.getAmount());
+                    LoanBao.updateLoanInstallmentAuto(lvm);
+                }
+                LoanViewModel loan = LoanBao.get(new LoanViewModel(ledger.getLedgerId()));
+                request.setAttribute("loan", loan);
+            }
+            /*----- Recurring -------*/
+            if(ledger.getLedgerTypeName().toLowerCase().contains("recurring")){
+                RecurringViewModel recur = RecurringBao.get(new RecurringViewModel(ledger.getLedgerId()));
+                request.setAttribute("recur", recur);
+            }
+            
         }
 
         request.setAttribute(

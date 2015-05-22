@@ -7,14 +7,14 @@
     <fieldset>
         
         <legend class="text-center">Login</legend>
-        <form method="post" action="login" class="form-inline"  role="form">
+        <form method="post" action="login"  id="form1"  role="form">
             <p class="row">
                 <label for="userEmail">User Email</label>
-                <input type="email" id="userEmail" name="userEmail" class="form-control" />
+                <input type="email" required id="userEmail" name="userEmail" class="form-control" />
             </p>
             <p class="row">
                 <label for="userPass">User Password</label>
-                <input type="password" id="userPass" name="userPass" class="form-control" />
+                <input type="password" required id="userPass" name="userPass" class="form-control" />
             </p>
             <p class="text-danger text-center">${message}</p>
             <p class="row center">

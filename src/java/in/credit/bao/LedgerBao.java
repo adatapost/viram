@@ -160,7 +160,7 @@ public class LedgerBao {
                         a.getCreated(), a.getUpdated(), a.getIsClosed(), a.getIsDeleted(),
                         a.getCurrentAcYear(),a.getLedgerType().getLedgerTypeName());
             }
-
+          session.getTransaction().commit();
         } catch (Exception e) {
             System.out.println("LedgerBao::get " + e);
         } finally {

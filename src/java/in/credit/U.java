@@ -1,29 +1,49 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package in.credit;
 
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.Base64;
 import java.util.Base64.Encoder;
+import java.util.Properties;
+import java.util.Random;
+import javax.mail.Address;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.Part;
+import org.apache.commons.lang.math.JVMRandom;
 
 /**
  *
- * @author Prajapati
+ * @author Team
  */
 public class U {
 
     /* PATH at which images are stored on development machine  */
     public static final String PATH_CUSTOMER = "C:\\Javaprg\\Viram\\Code\\CreditSocApp\\web\\images\\Customers\\";
 
-    /***
-     * 
+    /**
+     * *
+     *
+     * @return java.sql.Connection
+     */
+    public static java.sql.Connection genConnection() {
+        try {
+            return DriverManager.getConnection("jdbc:mysql://localhost:3306/db_credit", "root", "");
+        } catch (SQLException ex) {
+            System.err.println("Error while obtaining connection : " + ex);
+        }
+        return null;
+    }
+
+    /**
+     * *
+     *
      * @param hashPassword
      * @return String
      */
@@ -40,8 +60,8 @@ public class U {
         }
         return "";
     }
-    
-    public static boolean verifyHashPassword(String hash,String newPass) {
+
+    public static boolean verifyHashPassword(String hash, String newPass) {
         String newPassHash = hashPassword(newPass);
         return newPassHash.equals(hash);
     }
@@ -141,5 +161,55 @@ public class U {
             return 0;
         }
     }
+    
+    /***
+     * 
+     * Random Password
+     */
 
+    public static String getRandomPassword() {
+        String str = "ABCDEFGHJIKMLNAXZPQERTpadszbcmvghrtq123456789";
+        StringBuilder sb=new StringBuilder();
+        Random rnd=new Random();
+        for(int i=1;i<=7;i++) {
+            sb.append(str.charAt(rnd.nextInt(str.length()-1)));
+        }
+        return sb.toString();
+    }
+    /**
+     *
+     * sendEmail
+     */
+    public static String sendEmail(String toEmail, String toName, String subject, String body) {
+
+        try {
+            String username = "account@gmail.com";
+            String password = "password";
+            Properties prop = new Properties();
+            prop.put("mail.debug", "true");
+            prop.put("mail.smtp.ssl.enable", "true");
+
+//2. Create Session object 
+            Session session = Session.getDefaultInstance(prop);
+
+//3. Compose message
+            MimeMessage message = new MimeMessage(session);
+            message.setSubject(subject);
+            message.setText(body);
+            message.setFrom(new InternetAddress(username, "Mr. Full Name"));
+//4. Don't forget the commit changes
+            message.saveChanges();
+
+//5. Define receipant  
+            Address[] addr = new InternetAddress[]{
+                new InternetAddress(toEmail, toName)};
+//6. Obtain Transport object  
+            Transport trans = session.getTransport("smtp");
+            trans.connect("smtp.gmail.com", 465, username, password);
+            trans.sendMessage(message, addr);
+            return "OK";
+        } catch (Exception e) {
+        }
+        return "Error";
+    }
 }

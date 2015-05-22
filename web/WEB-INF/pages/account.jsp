@@ -28,11 +28,13 @@
                         <input type="text" 
                                placeholder="Account Number"
                                list="list" 
-                               
+
                                name="userId" value="${model.userId}"/>
                         <button class="btn btn-default">Submit</button>
                         <a href="customer" class="btn btn-default">New Account</a>
-
+                        <c:if test="${model.userId ne 0}">
+                            <a target="_blank" href="../show-report?cmd=ledgers&accountId=${model.userId}" class="btn btn-default">Print</a>
+                        </c:if>
                     </form>
                     <c:if test="${model.userId ne 0}">
                         <table class="table table-bordered">
@@ -100,12 +102,13 @@
                                                 <td>${a.isDeleted ? "Yes" : "No"}</td>
                                                 <td>
                                                     <c:if test="${a.ledgerTypeId ne 2}">
-                                                    <form method='get' action='${a.ledgerTypeId eq 6 ? 'deposit' : a.ledgerTypeId eq 5 ? 'recurring' : 'loan'}'>
-                                                           <input type="hidden" name="userId" value="${model.userId}"/>
-                                                           <input type="hidden" name="ledgerId" value="${a.ledgerId}"/>
-                                                           <button name="cmd" value='Edit' class='btn btn-default'>Edit</button>
-                                                    </form>
+                                                        <form method='get' action='${a.ledgerTypeId eq 6 ? 'deposit' : a.ledgerTypeId eq 5 ? 'recurring' : 'loan'}'>
+                                                            <input type="hidden" name="userId" value="${model.userId}"/>
+                                                            <input type="hidden" name="ledgerId" value="${a.ledgerId}"/>
+                                                            <button name="cmd" value='Edit' class='btn btn-default'>Edit</button>
+                                                        </form>
                                                     </c:if>
+                                                    <a class="btn btn-default" target="_blank" href="show-report?cmd=ledger&accountId=${a.ledgerId}">Print</a>
                                                 </td>
                                             </tr>
                                         </c:forEach>

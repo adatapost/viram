@@ -1,5 +1,5 @@
 package in.credit.model;
-// Generated Apr 13, 2015 1:34:56 PM by Hibernate Tools 4.3.1
+// Generated Apr 24, 2015 9:08:10 AM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -21,6 +21,7 @@ public class Ledger  implements java.io.Serializable {
      private Boolean isClosed;
      private Boolean isDeleted;
      private Integer currentAcYear;
+     private Set<LoanInstallment> loanInstallments = new HashSet<LoanInstallment>(0);
      private Set<Journal> journalsForCrLedgerId = new HashSet<Journal>(0);
      private Set<Journal> journalsForDrLedgerId = new HashSet<Journal>(0);
      private Recurring recurring;
@@ -34,7 +35,7 @@ public class Ledger  implements java.io.Serializable {
     public Ledger(String ledgerName) {
         this.ledgerName = ledgerName;
     }
-    public Ledger(Account account, LedgerType ledgerType, String ledgerName, Date created, Date updated, Boolean isClosed, Boolean isDeleted, Integer currentAcYear, Set<Journal> journalsForCrLedgerId, Set<Journal> journalsForDrLedgerId, Recurring recurring, Loan loan, Deposit deposit) {
+    public Ledger(Account account, LedgerType ledgerType, String ledgerName, Date created, Date updated, Boolean isClosed, Boolean isDeleted, Integer currentAcYear, Set<LoanInstallment> loanInstallments, Set<Journal> journalsForCrLedgerId, Set<Journal> journalsForDrLedgerId, Recurring recurring, Loan loan, Deposit deposit) {
        this.account = account;
        this.ledgerType = ledgerType;
        this.ledgerName = ledgerName;
@@ -43,6 +44,7 @@ public class Ledger  implements java.io.Serializable {
        this.isClosed = isClosed;
        this.isDeleted = isDeleted;
        this.currentAcYear = currentAcYear;
+       this.loanInstallments = loanInstallments;
        this.journalsForCrLedgerId = journalsForCrLedgerId;
        this.journalsForDrLedgerId = journalsForDrLedgerId;
        this.recurring = recurring;
@@ -112,6 +114,13 @@ public class Ledger  implements java.io.Serializable {
     
     public void setCurrentAcYear(Integer currentAcYear) {
         this.currentAcYear = currentAcYear;
+    }
+    public Set<LoanInstallment> getLoanInstallments() {
+        return this.loanInstallments;
+    }
+    
+    public void setLoanInstallments(Set<LoanInstallment> loanInstallments) {
+        this.loanInstallments = loanInstallments;
     }
     public Set<Journal> getJournalsForCrLedgerId() {
         return this.journalsForCrLedgerId;

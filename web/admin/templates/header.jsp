@@ -22,20 +22,31 @@
                 <ul class="nav nav-tabs bg-info menubar">
                     <li><a href="Home"  class="glyphicon glyphicon-home" title="Home"></a></li>
                     <li><a href="account">Ledger</a></li>
-                    <li><a href="Loan">Loan</a></li>
-                    <li><a href="Recurring">Recurring</a></li>
-                    <li><a href="employees">Employees</a></li>
+                    <li><a href="journal">Journals</a></li>
+                    
                     <li class="dropdown">
-                        <a href="#" data-toggle="dropdown">Manage<span class="caret"></span></a>
+                        <a href="#" data-toggle="dropdown">Master<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="city">Manage Cities & States</a></li>
                             <li><a href="actype">Account Types</a></li>
                             <li><a href="ledger-type">Ledger Types</a></li>
                         </ul> 
                     </li>
+                    
+                    <li class="dropdown">
+                        <a href="#" data-toggle="dropdown">Report<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a target="_blank" href="../show-report?cmd=account">All Accounts</a></li>
+                            <li><a target="_blank" href="../show-report?cmd=current-account">Current Accounts</a></li>
+                            <li><a target="_blank" href="../show-report?cmd=savings-account">Savings Accounts</a></li>
+                             <li><a target="_blank" href="account">Account Wise Ledgers</a></li>
+                             
+                        </ul> 
+                    </li>
                     <ul class="nav nav-tabs float-right text-success">
+                        <li><a href="../change-pass">Change Password</a>
                         <li><a href="AdminProfile" class="glyphicon glyphicon-user" title="Profile"></a></li>
-                        <li><a href="../index.jsp" class="w-auto glyphicon glyphicon-off" title="Logout"></a></li>
+                        <li><a href="../login" class="w-auto glyphicon glyphicon-off" title="Logout"></a></li>
                     </ul>
                 </ul>
             </nav>
@@ -46,4 +57,5 @@
                 <script src="../js/jquery-2.1.3.min.js"></script>
                 <script src="../js/bootstrap.min.js"></script>
                 <script src="../js/jquery.validate.min.js"></script>
+                <script src="../js/moment.min.js"></script>
                 

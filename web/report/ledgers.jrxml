@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.0.4.final using JasperReports Library version 6.0.4  -->
+<!-- 2015-05-14T12:53:53 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ledgers" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ced95029-b569-4027-895c-af2843a4e088">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="db_credit"/>
+	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true"/>
+	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="Row" mode="Transparent">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#E6DAC3"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="Parameter1" class="java.lang.String">
+		<defaultValueExpression><![CDATA[1]]></defaultValueExpression>
+	</parameter>
+	<parameter name="REPORT_IMAGE" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Javaprg\\Viram\\Code\\CreditSocApp\\web\\images\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CUSTOMER_IMAGE" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Javaprg\\Viram\\Code\\CreditSocApp\\web\\images\\Customers\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString language="SQL">
+		<![CDATA[select * from  db_credit.view_ledger where account_id=$P{Parameter1}]]>
+	</queryString>
+	<field name="ledger_id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ledger_type_id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ledger_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="account_id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="created" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="updated" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="is_closed" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="is_deleted" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="current_ac_year" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ledger_type_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="full_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="address" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="city_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="state_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="ledger_id1" class="java.lang.Integer" resetType="Group" resetGroup="Group1" calculation="Count">
+		<variableExpression><![CDATA[$F{ledger_id}]]></variableExpression>
+	</variable>
+	<group name="Group1">
+		<groupExpression><![CDATA[(int)($V{REPORT_COUNT}/15)]]></groupExpression>
+		<groupHeader>
+			<band height="84">
+				<frame>
+					<reportElement mode="Opaque" x="-21" y="7" width="597" height="24" forecolor="#B89F7D" backcolor="#F2EBDF" uuid="df26104b-a7fc-458f-8a21-50b13c7c7736"/>
+					<textField>
+						<reportElement x="70" y="2" width="100" height="20" uuid="ddd57b38-78c7-4e9a-a8f5-3b1d2ed1957f"/>
+						<textElement>
+							<font isBold="true"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{account_id}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement x="1" y="2" width="68" height="16" uuid="5052da86-c413-41ec-9fe7-54171d0389f0"/>
+						<textElement textAlignment="Right">
+							<font isBold="true"/>
+						</textElement>
+						<text><![CDATA[A/C NO : ]]></text>
+					</staticText>
+					<line>
+						<reportElement x="1" y="0" width="180" height="1" uuid="c3c219c1-056d-4a9e-b84a-9b3602ebf6f1"/>
+					</line>
+				</frame>
+				<textField>
+					<reportElement x="49" y="31" width="263" height="23" uuid="43315e73-7f5a-4329-9ade-5e61e8640ee1"/>
+					<textFieldExpression><![CDATA[$F{full_name}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="48" y="54" width="302" height="30" uuid="006e5d02-d278-4258-819d-4f812db7cf04"/>
+					<textFieldExpression><![CDATA[$F{address}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="-20" y="31" width="68" height="16" uuid="ff736b14-061c-488b-b287-5d387d07e5e6"/>
+					<textElement textAlignment="Right">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[NAME : ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="-20" y="50" width="68" height="16" uuid="37b83303-a118-45ec-86c3-e828f9c23481"/>
+					<textElement textAlignment="Right">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[ADDRESS : ]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="42">
+				<textField>
+					<reportElement x="80" y="10" width="100" height="18" uuid="de358788-ca83-4164-90bf-b33989ed4bc1"/>
+					<textFieldExpression><![CDATA[$V{ledger_id1}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="1" y="0" width="180" height="1" uuid="e8c5e559-724e-4e63-87a7-ccb5dab97830"/>
+				</line>
+				<line>
+					<reportElement x="0" y="28" width="180" height="1" uuid="4614d1cb-f8a6-40a5-b559-607b6280725f"/>
+				</line>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="Group2">
+		<groupExpression><![CDATA[(int)($V{REPORT_COUNT}/5)]]></groupExpression>
+		<groupHeader>
+			<band height="124">
+				<image>
+					<reportElement x="465" y="-30" width="110" height="90" uuid="d000d41e-3db5-42d1-b1d0-1a649c6a62b8"/>
+					<imageExpression><![CDATA[$P{CUSTOMER_IMAGE} + $F{account_id}]]></imageExpression>
+				</image>
+				<textField>
+					<reportElement x="48" y="0" width="60" height="20" uuid="c36dcbca-2bf2-45ac-80ea-e3039ef07b57"/>
+					<textFieldExpression><![CDATA[$F{city_name}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="108" y="0" width="100" height="20" uuid="e1ce3d31-bbed-4a0c-a133-6d9e3a55d1f5"/>
+					<textFieldExpression><![CDATA[$F{state_name}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="70" width="140" height="30" uuid="7d7da1fe-3d7d-4179-97b1-31e6fe620106"/>
+					<textElement>
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[LEDGER]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="380" y="70" width="95" height="30" uuid="cfad99c8-1567-47a2-ad6a-f9162732e1b7"/>
+					<textElement>
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[OPEN DATE]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="484" y="70" width="79" height="30" uuid="848d186c-5105-42f6-a3b1-7366a82cfc26"/>
+					<textElement>
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[STATUS]]></text>
+				</staticText>
+				<line>
+					<reportElement x="-25" y="104" width="601" height="1" uuid="2f1cd5d8-1310-44b4-bc87-b841e6647a88"/>
+				</line>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="136" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="164" height="126" uuid="ddc15723-2728-421f-b95e-2df9faf64ce1"/>
+				<imageExpression><![CDATA[$P{REPORT_IMAGE} + "favicon.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement style="Title" x="170" y="0" width="393" height="62" uuid="1a652692-054a-40f3-ade5-68d8da36626d"/>
+				<textElement verticalAlignment="Middle">
+					<font size="22"/>
+				</textElement>
+				<text><![CDATA[CAMPA CREDIT SOCIETY]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="219" y="62" width="131" height="22" uuid="88d4231e-f014-4b0d-b871-1737ba63a1ae"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[LEDGERS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="172" y="94" width="383" height="42" uuid="f0bfb1ea-a85a-47cd-a1a4-43f22b45e80f"/>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Each accountee has one or more child accounts also known as ledgers and each ledger belongs to different ledger category ]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="1a61a836-d137-48b1-ad67-6ff64600bf93"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="23" splitType="Stretch">
+			<textField>
+				<reportElement x="1" y="0" width="368" height="20" uuid="75d8695d-7223-431e-a77c-f00e3b16064f"/>
+				<textFieldExpression><![CDATA[$F{ledger_name}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd-MM-yyyy">
+				<reportElement x="380" y="0" width="82" height="20" uuid="f9adf585-d61c-46b5-aa4d-1d8931279b62"/>
+				<textFieldExpression><![CDATA[$F{created}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="491" y="0" width="64" height="20" uuid="4b668470-a397-4f84-ac37-99acafc087ba"/>
+				<textFieldExpression><![CDATA[$F{is_closed} ? "Closed" : "Active"]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="fa45a887-615a-4d84-a2d7-8a2219671b3c"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="-21" y="1" width="597" height="24" forecolor="#D0B48E" backcolor="#F2EBDF" uuid="183682bc-d976-4756-83e0-6625a3f98ed1"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="533" y="0" width="40" height="20" forecolor="#736343" uuid="0193f9b3-1559-491a-8580-b6988863b6a1"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="453" y="0" width="80" height="20" forecolor="#736343" uuid="d00b105e-494b-418b-8ac9-8b1b4824f4f0"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="22" y="1" width="197" height="20" forecolor="#736343" uuid="0616f3fe-0354-456f-8911-ec30ec51a5ae"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -58,16 +58,16 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <input type="date" class="form-control" name="startDate"
+                                    <input type="date" class="form-control" id="startDate" name="startDate"
                                            value="<fmt:formatDate value="${ledger.startDate}" pattern="yyyy-MM-dd" />" required/>
                                 </td>
 
                                 <td>
-                                    <input type="date" class="form-control" name="endDate" 
+                                    <input type="date" class="form-control" id="endDate" name="endDate" 
                                            value="<fmt:formatDate value="${ledger.endDate}" pattern="yyyy-MM-dd"/>" required/>
                                 </td>
                                 <td>
-                                    <select name="frequency" class="form-control" required>
+                                    <select name="frequency" id="frequency" class="form-control" required>
                                         <c:forEach var="i" items="Daily,Weekly,Monthly" varStatus="loop">
                                             <option ${ledger.frequency eq loop.index ? 'selected':''} value="${loop.index}">${i}</option>
                                         </c:forEach>
@@ -75,7 +75,7 @@
                                 </td>
 
                                 <td>
-                                    <input type="number" class="form-control" name="term" value="${ledger.term}" required/>
+                                    <input type="number" class="form-control" id="term" name="term" value="${ledger.term}" required/>
                                 </td>
                             </tr>
                             <tr>
@@ -109,5 +109,26 @@
 </fieldset>
 <script>
     $("#form1").validate();
+
+    function setTerm() {
+        var freq = [1, 7, 30]
+        var _startDate = new Date($("#startDate").val());
+        var days = freq[ parseInt($("#frequency").val()) ] * parseInt($("#term").val());
+        if (days) {
+            _startDate = moment(_startDate).add(days, "day");
+            console.log(moment(_startDate).format('YYYY-MM-DD'));
+            $("#endDate").val(moment(_startDate).format('YYYY-MM-DD'));
+        }
+    }
+    $("#term").keyup(function(){
+        setTerm();
+    });
+    $("#frequency").change(function(){
+        setTerm();
+    });
+    $("#startDate").change(function(){
+        setTerm();
+    });
+    setTerm();
 </script>
 <jsp:include page="/${role}/templates/footer.jsp" />

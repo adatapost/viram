@@ -10,6 +10,7 @@
     <mapping resource="in/credit/model/AccountType.hbm.xml"/>
     <mapping resource="in/credit/model/Account.hbm.xml"/>
     <mapping resource="in/credit/model/Loan.hbm.xml"/>
+    <mapping resource="in/credit/model/LoanInstallment.hbm.xml"/>
     <mapping resource="in/credit/model/Nominee.hbm.xml"/>
     <mapping resource="in/credit/model/AccMaster.hbm.xml"/>
     <mapping resource="in/credit/model/Role.hbm.xml"/>

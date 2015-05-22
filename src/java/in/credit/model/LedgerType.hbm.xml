@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Apr 13, 2015 1:34:58 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated Apr 24, 2015 9:08:11 AM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="in.credit.model.LedgerType" table="ledger_type" catalog="db_credit" optimistic-lock="version">
         <id name="ledgerTypeId" type="java.lang.Integer">

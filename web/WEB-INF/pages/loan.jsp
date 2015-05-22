@@ -53,20 +53,24 @@
                             <tr>
                                 <td>Starts</td>
                                 <td>Ends</td>
-                                <td>Installment</td>
+                                <td>Installment Amount</td>
+                                <td></td>
                             </tr>
                             <tr>
                                 <td>
-                                    <input type="date" class="form-control" name="startDate"
+                                    <input type="date" class="form-control" id="startDate" name="startDate"
                                            value="<fmt:formatDate value="${ledger.startDate}" pattern="yyyy-MM-dd" />" required/>
                                 </td>
 
                                 <td>
-                                    <input type="date" class="form-control" name="endDate" 
-                                           value="<fmt:formatDate value="${ledger.endDate}" pattern="yyyy-MM-dd"/>" required/>
+                                    <input type="date" class="form-control" id="endDate" name="endDate" 
+                                           value="<fmt:formatDate value="${ledger.endDate}"  pattern="yyyy-MM-dd"/>" required/>
                                 </td>
                                 <td>
-                                    <input type="number" class="form-control" name="installment" value="${ledger.installment}" required/>
+                                    <input type="number" class="form-control" name="installment" id="installment" value="${ledger.installment}" required/>
+                                </td>
+                                <td>
+                                    <div id="showInst"></div>
                                 </td>
                             </tr>
                             <tr>
@@ -77,7 +81,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <input type="number" class="form-control" name="amount" value="${ledger.amount}" required/>
+                                    <input type="number" class="form-control" name="amount" id="amount" value="${ledger.amount}" required/>
                                 </td>
                                 <td>
                                     <input type="number" class="form-control" name="interestRate" value="${ledger.interestRate}" required/>
@@ -100,5 +104,22 @@
 </fieldset>
 <script>
     $("#form1").validate();
+
+    function calcInst() {
+        var _amount = $("#amount").val();
+        var _installment = $("#installment").val();
+        var count = parseInt(Math.ceil(_amount / _installment).toFixed(0));
+        if (count) {
+            $("#showInst").text(count);
+        }
+        var _startDate = new Date($("#startDate").val());
+        _startDate = moment(_startDate).add(count, "month");
+        console.log(moment(_startDate).format('YYYY-MM-DD'));
+        $("#endDate").val(moment(_startDate).format('YYYY-MM-DD'));
+    }
+    $("#amount, #installment").keyup(function () {
+        calcInst();
+    });
+    calcInst();
 </script>
 <jsp:include page="/${role}/templates/footer.jsp" />
